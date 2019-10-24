@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#039BE5</color>
+    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="colorAccent">#FFA000</color>
+
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_500">#9E9E9E</color>
+
+    <!--  Timetable Layout  -->
+    <color name="text_monday">#ffff00</color>
+    <color name="text_tuesday">#ffc0cb</color>
+    <color name="text_wednesday">#90ee90</color>
+    <color name="text_thursday">#ffa500</color>
+    <color name="text_friday">#3CB371</color>
+    <color name="table_border">#A9A9A9</color>
+    <color name="term_cell">#DCDCDC</color>
+    <color name="table_cell">#FFFFFF</color>
+    <color name="light_sky_blue">#87CEFA</color>
+
+    <!--  ClassDetails Layout  -->
+    <color name="details_background">#FFFFFF</color>
+    <color name="details_cell">#FFFFFF</color>
+    <color name="delete_button">#C0C0C0</color>
+    <color name="edit_button">#FFA500</color>
+
+</resources>

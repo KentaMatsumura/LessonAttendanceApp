@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "521342477371",
+    "firebase_url": "https://lessonattendanceapp.firebaseio.com",
+    "project_id": "lessonattendanceapp",
+    "storage_bucket": "lessonattendanceapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521342477371:android:6d9e5426baaa9f506be81e",
+        "android_client_info": {
+          "package_name": "jp.matsumura.kenta.lessonattendanceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521342477371-5vhvegosr52p5q2ajbros0csek0lpnni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxCWYuclnpMQlAc95Pk51VTtA_wxkb7sM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "521342477371-5vhvegosr52p5q2ajbros0csek0lpnni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

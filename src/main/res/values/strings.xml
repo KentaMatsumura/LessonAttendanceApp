@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">AttendanceApp</string>
+
+    <!--  Authentication  -->
+    <string name="loading">Loading…</string>
+    <string name="emailpassword_title_text">Email and Password</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="signed_in">Please sign in</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="verify_email">Verify Email</string>
+
+    <string name="emailpassword_status_fmt">Email User: %1$s (verified: %2$b)</string>
+    <string name="firebase_status_fmt">Firebase User: %s</string>
+    <string name="firebase_user_management">Firebase User Management</string>
+    <string name="auth_failed">Authentication failed</string>
+
+    <!--  Timetable  -->
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="first_term">1</string>
+    <string name="second_term">2</string>
+    <string name="third_term">3</string>
+    <string name="fourth_term">4</string>
+    <string name="fifth_term">5</string>
+    <string name="sixth_term">6</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  ClassDetails  -->
+    <string name="edit_text">編集する</string>
+    <string name="save_text">保存する</string>
+    <string name="delete_text">削除する</string>
+    <string name="pen_description">class_content</string>
+    <string name="class_name">授業</string>
+    <string name="class_name_hint">授業</string>
+    <string name="class_location">教室</string>
+    <string name="class_location_hint">教室名</string>
+    <string name="class_time">時間</string>
+    <string name="time_wave_line">〜</string>
+    <string name="attendance_state">出席状況</string>
+    <string name="status_attend_text">出席</string>
+    <string name="status_absence_text">欠席</string>
+    <string name="status_late_text">遅刻</string>
+    <string name="double_quotation">:</string>
+
+</resources>
