@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.AppCompat.Button"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/frame_lightskyblue_rad5dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
+    <TextView
+        android:id="@+id/attendance_status"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+        android:background="@drawable/frame_white_rad5dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="@dimen/text_interval_smedium" />
+
+    <TextView
+        android:id="@+id/class_place"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="1dp"
+        android:layout_weight="1"
+        android:background="@drawable/frame_white_rad5dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="@dimen/text_interval_smedium" />
+
+</LinearLayout>

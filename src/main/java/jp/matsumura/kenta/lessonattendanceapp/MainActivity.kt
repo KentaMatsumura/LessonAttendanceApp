@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import jp.matsumura.kenta.lessonattendanceapp.timetable.TimetableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), View.OnClickListener {
@@ -57,8 +58,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     Log.d(TAG, "createUserWithEmail:success")
                     val user = auth.currentUser
                     updateUI(user)
-//                    val timetableIntent = Intent(applicationContext, TimetableActivity::class.java)
-//                    startActivity(timetableIntent)
+                    val timetableIntent = Intent(applicationContext, TimetableActivity::class.java)
+                    startActivity(timetableIntent)
 
                 } else {
                     // If sign in fails, display a message to the user.
@@ -93,8 +94,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     updateUI(user)
-//                    val timetableIntent = Intent(applicationContext, TimetableActivity::class.java)
-//                    startActivity(timetableIntent)
+                    val timetableIntent = Intent(applicationContext, TimetableActivity::class.java)
+                    startActivity(timetableIntent)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
