@@ -4,6 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@drawable/frame_lightskyblue_rad5dp"
+    android:id="@+id/custom_button_layout"
     android:orientation="vertical">
 
     <TextView
@@ -25,7 +26,7 @@
         android:textSize="@dimen/text_interval_smedium" />
 
     <TextView
-        android:id="@+id/class_place"
+        android:id="@+id/lesson_location"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_margin="1dp"

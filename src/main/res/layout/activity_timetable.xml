@@ -178,7 +178,7 @@
                 android:text="@string/second_term" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_2_1"
+                android:id="@+id/custom_button_1_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -198,7 +198,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_2_3"
+                android:id="@+id/custom_button_3_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -208,7 +208,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_2_4"
+                android:id="@+id/custom_button_4_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -218,7 +218,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_2_5"
+                android:id="@+id/custom_button_5_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="1dip"
@@ -245,7 +245,7 @@
                 android:text="@string/third_term" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_3_1"
+                android:id="@+id/custom_button_1_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -275,7 +275,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_3_4"
+                android:id="@+id/custom_button_4_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -285,7 +285,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_3_5"
+                android:id="@+id/custom_button_5_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="1dip"
@@ -312,7 +312,7 @@
                 android:text="@string/fourth_term" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_4_1"
+                android:id="@+id/custom_button_1_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -352,7 +352,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_4_5"
+                android:id="@+id/custom_button_5_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="1dip"
@@ -379,7 +379,7 @@
                 android:text="@string/fifth_term" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_5_1"
+                android:id="@+id/custom_button_1_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -446,7 +446,7 @@
                 android:text="@string/sixth_term" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_6_1"
+                android:id="@+id/custom_button_1_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -456,7 +456,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_6_2"
+                android:id="@+id/custom_button_2_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -466,7 +466,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_6_3"
+                android:id="@+id/custom_button_3_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -476,7 +476,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_6_4"
+                android:id="@+id/custom_button_4_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dip"
@@ -486,7 +486,7 @@
                 android:background="@color/table_cell" />
 
             <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
-                android:id="@+id/custom_button_6_5"
+                android:id="@+id/custom_button_5_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="1dip"
