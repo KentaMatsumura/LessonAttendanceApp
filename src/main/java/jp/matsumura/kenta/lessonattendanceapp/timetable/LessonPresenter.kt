@@ -27,7 +27,6 @@ class LessonPresenter : LessonContract.Presenter {
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-//                    Log.d("SAMPLEDATA", "${document.id} => ${document.data} ")
                     view.loadLessonSuccess(document)
                 }
             }

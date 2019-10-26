@@ -1,8 +1,11 @@
 package jp.matsumura.kenta.lessonattendanceapp.timetable
 
+import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -41,10 +44,10 @@ class TimetableActivity : BaseActivity(), LessonContract.View {
         presenter.loadLesson()
 
         custom_button_1_1.setOnClickListener { toastMessage(it) }
-        custom_button_1_2.setOnClickListener { toastMessage(it) }
-        custom_button_1_3.setOnClickListener { toastMessage(it) }
-        custom_button_1_4.setOnClickListener { toastMessage(it) }
-        custom_button_1_5.setOnClickListener { toastMessage(it) }
+        custom_button_2_1.setOnClickListener { toastMessage(it) }
+        custom_button_3_1.setOnClickListener { toastMessage(it) }
+        custom_button_4_1.setOnClickListener { toastMessage(it) }
+        custom_button_5_1.setOnClickListener { toastMessage(it) }
 
     }
 
@@ -76,18 +79,18 @@ class TimetableActivity : BaseActivity(), LessonContract.View {
         activityComponent.inject(this)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun loadLessonSuccess(list: QueryDocumentSnapshot) {
         val button: CustomButtonView =
             when (list.data["lessonId"].toString()) {
                 "11" -> findViewById(R.id.custom_button_1_1)
-                "21" -> findViewById(R.id.custom_button_1_2)
-                "31" -> findViewById(R.id.custom_button_1_3)
-                "41" -> findViewById(R.id.custom_button_1_4)
-                "51" -> findViewById(R.id.custom_button_1_5)
+                "21" -> findViewById(R.id.custom_button_2_1)
+                "31" -> findViewById(R.id.custom_button_3_1)
+                "41" -> findViewById(R.id.custom_button_4_1)
+                "51" -> findViewById(R.id.custom_button_5_1)
 
                 else -> findViewById(R.id.custom_button_5_5)
             }
-
         button.lesson_name.text = list.data["lessonName"].toString()
         button.lesson_location.text = list.data["lessonLocation"].toString()
 

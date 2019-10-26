@@ -3,11 +3,9 @@
     android:shape="rectangle">
 
     <!-- 塗りつぶし color:塗りつぶしの色 -->
-    <solid
-        android:color="#FFFFFF"/>
+    <solid android:color="#FFFFFF" />
 
     <!-- 角の丸み設定 -->
-    <corners
-        android:radius="5dp"/>
+    <corners android:radius="5dp" />
 
 </shape>

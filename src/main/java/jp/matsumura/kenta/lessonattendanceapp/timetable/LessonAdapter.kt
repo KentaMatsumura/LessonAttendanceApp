@@ -7,7 +7,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import jp.matsumura.kenta.lessonattendanceapp.R
 import jp.matsumura.kenta.lessonattendanceapp.data.Lesson
-import kotlinx.android.synthetic.main.view_custom_button.*
 
 class LessonAdapter(private val context: Context, private val list: MutableList<Lesson>) {
 
