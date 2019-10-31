@@ -1,7 +1,8 @@
-package jp.matsumura.kenta.lessonattendanceapp.timetable
+package jp.matsumura.kenta.lessonattendanceapp.timetable.presenter
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import jp.matsumura.kenta.lessonattendanceapp.timetable.contract.LessonContract
 
 class LessonPresenter : LessonContract.Presenter {
 
@@ -13,15 +14,6 @@ class LessonPresenter : LessonContract.Presenter {
     }
 
     override fun loadLesson() {
-        /*
-        TODO :
-         DBへアクセスしてデータを取得してくる
-         [ISSUE]
-         どうやって全部のデータを取ってきて各ボタンへ振り分けたらいいのか
-        */
-        /*
-        流れ的にはリストで全部取ってきて、viewへ流し、view側で表示
-        */
         val db = FirebaseFirestore.getInstance()
         db.collection("lessons")
             .get()
@@ -31,7 +23,7 @@ class LessonPresenter : LessonContract.Presenter {
                 }
             }
             .addOnFailureListener { e ->
-                Log.w("SAMPLEDATA", e)
+                Log.w("ERROR LOG", e)
             }
     }
 

@@ -1,4 +1,4 @@
-package jp.matsumura.kenta.lessonattendanceapp.timetable
+package jp.matsumura.kenta.lessonattendanceapp
 
 class BaseContract {
     interface View {}

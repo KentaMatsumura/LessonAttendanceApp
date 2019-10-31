@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".timetable.TimetableActivity">
+    tools:context=".timetable.view.TimetableActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -110,7 +110,7 @@
                 android:gravity="right"
                 android:text="@string/first_term" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_1_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -120,7 +120,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_2_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -130,7 +130,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_3_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -140,7 +140,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_4_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -150,7 +150,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_5_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -177,7 +177,7 @@
                 android:gravity="right"
                 android:text="@string/second_term" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_1_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -187,7 +187,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_2_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -197,7 +197,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_3_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -207,7 +207,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_4_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -217,7 +217,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_5_2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -244,7 +244,7 @@
                 android:gravity="right"
                 android:text="@string/third_term" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_1_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -254,7 +254,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_2_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -264,7 +264,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_3_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -274,7 +274,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_4_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -284,7 +284,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_5_3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -311,7 +311,7 @@
                 android:gravity="right"
                 android:text="@string/fourth_term" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_1_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -321,7 +321,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_2_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -331,7 +331,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_3_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -341,7 +341,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_4_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -351,7 +351,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_5_4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -378,7 +378,7 @@
                 android:gravity="right"
                 android:text="@string/fifth_term" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_1_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -388,7 +388,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_2_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -398,7 +398,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_3_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -408,7 +408,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_4_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -418,7 +418,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_5_5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -445,7 +445,7 @@
                 android:gravity="right"
                 android:text="@string/sixth_term" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_1_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -455,7 +455,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_2_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -465,7 +465,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_3_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -475,7 +475,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_4_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -485,7 +485,7 @@
                 android:layout_weight="1"
                 android:background="@color/table_cell" />
 
-            <jp.matsumura.kenta.lessonattendanceapp.timetable.CustomButtonView
+            <jp.matsumura.kenta.lessonattendanceapp.timetable.view.CustomButtonView
                 android:id="@+id/custom_button_5_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

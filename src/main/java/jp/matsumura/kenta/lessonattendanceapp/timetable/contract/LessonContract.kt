@@ -1,7 +1,7 @@
-package jp.matsumura.kenta.lessonattendanceapp.timetable
+package jp.matsumura.kenta.lessonattendanceapp.timetable.contract
 
 import com.google.firebase.firestore.QueryDocumentSnapshot
-import jp.matsumura.kenta.lessonattendanceapp.data.Lesson
+import jp.matsumura.kenta.lessonattendanceapp.BaseContract
 
 class LessonContract {
     interface View : BaseContract.View {

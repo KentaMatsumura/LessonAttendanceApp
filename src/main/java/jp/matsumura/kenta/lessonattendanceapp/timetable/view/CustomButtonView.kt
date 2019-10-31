@@ -1,4 +1,4 @@
-package jp.matsumura.kenta.lessonattendanceapp.timetable
+package jp.matsumura.kenta.lessonattendanceapp.timetable.view
 
 import android.content.Context
 import androidx.constraintlayout.widget.ConstraintLayout

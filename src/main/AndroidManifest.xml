@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".timetable.TimetableActivity"></activity>
+        <activity android:name=".timetable.view.TimetableActivity"></activity>
         <activity android:name=".BaseActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,5 +19,6 @@
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>

@@ -1,7 +1,6 @@
 package jp.matsumura.kenta.lessonattendanceapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -9,7 +8,7 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import jp.matsumura.kenta.lessonattendanceapp.timetable.TimetableActivity
+import jp.matsumura.kenta.lessonattendanceapp.timetable.view.TimetableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), View.OnClickListener {
@@ -69,9 +68,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     updateUI(null)
 
                 }
-                // [START_EXCLUDE]
-                hideProgressDialog()
-                // [END_EXCLUDE]
             }
         // [END create_user_with_email]
     }
@@ -81,9 +77,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         if (!validateForm()) {
             return
         }
-
-        showProgressDialog()
-
         // [START sign_in_with_email]
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
@@ -105,7 +98,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 if (!task.isSuccessful) {
                     status.setText(R.string.auth_failed)
                 }
-                hideProgressDialog()
                 // [END_EXCLUDE]
             }
         // [END sign_in_with_email]
@@ -169,7 +161,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        hideProgressDialog()
         if (user != null) {
             status.text = getString(
                 R.string.emailpassword_status_fmt,

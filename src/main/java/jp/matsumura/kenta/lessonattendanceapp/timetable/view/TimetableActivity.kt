@@ -1,11 +1,8 @@
-package jp.matsumura.kenta.lessonattendanceapp.timetable
+package jp.matsumura.kenta.lessonattendanceapp.timetable.view
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -13,6 +10,7 @@ import jp.matsumura.kenta.lessonattendanceapp.BaseActivity
 import jp.matsumura.kenta.lessonattendanceapp.R
 import jp.matsumura.kenta.lessonattendanceapp.di.component.DaggerActivityComponent
 import jp.matsumura.kenta.lessonattendanceapp.di.module.ActivityModule
+import jp.matsumura.kenta.lessonattendanceapp.timetable.contract.LessonContract
 import kotlinx.android.synthetic.main.activity_timetable.*
 import kotlinx.android.synthetic.main.view_custom_button.view.*
 import javax.inject.Inject
@@ -68,7 +66,10 @@ class TimetableActivity : BaseActivity(), LessonContract.View {
     }
 
     override fun showLessonFragment() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//        supportFragmentManager.beginTransaction()
+//            .addToBackStack(null)
+//            .setCustomAnimations(AnimType.FADE.getAnimPair().first, AnimType.FADE.getAnimPair().second)
+//            .replace(R.id.frame, )
     }
 
     private fun injectDependency() {
@@ -94,6 +95,20 @@ class TimetableActivity : BaseActivity(), LessonContract.View {
         button.lesson_name.text = list.data["lessonName"].toString()
         button.lesson_location.text = list.data["lessonLocation"].toString()
 
+    }
+
+    enum class AnimType() {
+        SLIDE,
+        FADE;
+
+        fun getAnimPair(): Pair<Int, Int> {
+            when(this) {
+                SLIDE -> return Pair(R.anim.slide_left, R.anim.slide_right)
+                FADE -> return Pair(R.anim.fade_in, R.anim.fade_out)
+            }
+
+            return Pair(R.anim.slide_left, R.anim.slide_right)
+        }
     }
 
 }
