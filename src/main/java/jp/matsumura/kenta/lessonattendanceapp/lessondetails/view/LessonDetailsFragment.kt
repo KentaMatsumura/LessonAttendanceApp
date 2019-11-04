@@ -1,5 +1,6 @@
 package jp.matsumura.kenta.lessonattendanceapp.lessondetails.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -7,17 +8,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.DocumentSnapshot
 
 import jp.matsumura.kenta.lessonattendanceapp.R
+import jp.matsumura.kenta.lessonattendanceapp.di.component.DaggerFragmentComponent
+import jp.matsumura.kenta.lessonattendanceapp.di.module.FragmentModule
 import jp.matsumura.kenta.lessonattendanceapp.lessondetails.contract.LessonDetailsContract
-import jp.matsumura.kenta.lessonattendanceapp.timetable.contract.LessonContract
+import kotlinx.android.synthetic.main.fragment_lesson_details.*
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -28,20 +34,18 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var docName: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
-    @Inject lateinit var presenter: LessonDetailsContract.Presenter
+    @Inject
+    lateinit var presenter: LessonDetailsContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            docName = it.getString(TAG)
         }
+        injectDependency()
     }
 
     override fun onCreateView(
@@ -55,7 +59,7 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attach(this)
-        presenter.loadData()
+        docName?.let { presenter.loadData(it) }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -77,6 +81,21 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
         listener = null
     }
 
+    override fun loadDataSuccess(list: DocumentSnapshot) {
+        class_name.text = list.data!!["lessonName"].toString()
+        class_location.text = list.data!!["lessonLocation"].toString()
+        val st = list.data!!["startTime"] as Timestamp
+        val et = list.data!!["endTime"] as Timestamp
+        start_time.text = convertTimestamp2String(st.toDate())
+        end_time.text = convertTimestamp2String(et.toDate())
+        val attendanceList = list.data!!["attendanceState"] as ArrayList<*>
+        val attendanceListArray = attendanceList.toArray() as Array
+        val_status_attend.text = countAttendanceState(attendanceListArray, 0).toString()
+        val_status_absence.text = countAttendanceState(attendanceListArray, 1).toString()
+        val_status_late.text = countAttendanceState(attendanceListArray, 2).toString()
+    }
+
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -89,8 +108,15 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
      * for more information.
      */
     interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onFragmentInteraction(uri: Uri)
+    }
+
+    private fun injectDependency() {
+        val lessonDetailsComponent = DaggerFragmentComponent.builder()
+            .fragmentModule(FragmentModule())
+            .build()
+
+        lessonDetailsComponent.inject(this)
     }
 
     companion object {
@@ -104,12 +130,23 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String) =
             LessonDetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(TAG, param1)
                 }
             }
+
+        val TAG: String = "LessonDetailsFragment"
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun convertTimestamp2String(time: Date): String {
+        val df = SimpleDateFormat("HH:mm")
+        return df.format(time)
+    }
+
+    private fun countAttendanceState(list: Array<*>, target: Long): Int {
+        return list.count { it == target }
     }
 }

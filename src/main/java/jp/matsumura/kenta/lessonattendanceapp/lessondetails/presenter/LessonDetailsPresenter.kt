@@ -5,17 +5,20 @@ import com.google.firebase.firestore.FirebaseFirestore
 import jp.matsumura.kenta.lessonattendanceapp.lessondetails.contract.LessonDetailsContract
 
 class LessonDetailsPresenter : LessonDetailsContract.Presenter {
+    private lateinit var view: LessonDetailsContract.View
+
     override fun attach(view: LessonDetailsContract.View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.view = view
     }
 
-    override fun loadData() {
+    override fun loadData(docName: String) {
         val db = FirebaseFirestore.getInstance()
         db.collection("lessons")
-            .document("jojo.k.bump2526@gmail.com_1_1")
+            .document(docName)
             .get()
             .addOnSuccessListener { result ->
                 Log.d("TESTTEST", result.toString())
+                view.loadDataSuccess(result)
             }
             .addOnFailureListener { e ->
                 Log.d("TESTTEST", e.toString())

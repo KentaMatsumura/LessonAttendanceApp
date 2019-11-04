@@ -1,14 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".lessondetails.view.LessonDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/class_details_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lesson_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@android:drawable/ic_menu_edit"
+            android:gravity="bottom"
+            android:text="@string/class_name"
+            android:textSize="@dimen/text_size_title"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            app:layout_constraintTop_toTopOf="@+id/class_details_layout" />
+
+        <TextView
+            android:id="@+id/class_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_content"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            app:layout_constraintTop_toBottomOf="@+id/lesson_name_title" />
+
+        <TextView
+            android:id="@+id/lesson_location_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_ssmall"
+            android:layout_marginTop="@dimen/text_interval_small"
+            android:drawableStart="@android:drawable/ic_menu_mylocation"
+            android:gravity="bottom"
+            android:text="@string/class_location"
+            android:textSize="@dimen/text_size_title"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            app:layout_constraintTop_toBottomOf="@+id/class_name" />
+
+        <TextView
+            android:id="@+id/class_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_content"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            app:layout_constraintTop_toBottomOf="@+id/lesson_location_title" />
+
+        <TextView
+            android:id="@+id/lesson_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_ssmall"
+            android:layout_marginTop="@dimen/text_interval_small"
+            android:drawableStart="@android:drawable/ic_menu_recent_history"
+            android:gravity="bottom"
+            android:text="@string/class_time"
+            android:textSize="@dimen/text_size_title"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            app:layout_constraintTop_toBottomOf="@+id/class_location" />
+
+        <TextView
+            android:id="@+id/start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_content"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            app:layout_constraintTop_toBottomOf="@+id/lesson_time_title" />
+
+        <TextView
+            android:id="@+id/time_wavy_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_small"
+            android:text="@string/time_wave_line"
+            android:textSize="@dimen/text_size_content"
+            app:layout_constraintStart_toEndOf="@+id/start_time"
+            app:layout_constraintTop_toBottomOf="@+id/lesson_time_title" />
+
+        <TextView
+            android:id="@+id/end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_small"
+            android:textSize="@dimen/text_size_content"
+            app:layout_constraintStart_toEndOf="@+id/time_wavy_line"
+            app:layout_constraintTop_toBottomOf="@+id/lesson_time_title" />
+
+        <TextView
+            android:id="@+id/attendance_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_ssmall"
+            android:layout_marginTop="@dimen/text_interval_small"
+            android:drawableStart="@android:drawable/ic_menu_myplaces"
+            android:gravity="bottom"
+            android:text="@string/attendance_state"
+            android:textSize="@dimen/text_size_title"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            app:layout_constraintTop_toBottomOf="@+id/start_time" />
+
+        <TextView
+            android:id="@+id/val_status_attend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_attendance_count"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            app:layout_constraintTop_toBottomOf="@+id/attendance_title" />
+
+        <TextView
+            android:id="@+id/state_attend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_small"
+            android:text="@string/status_attend_text"
+            android:textSize="@dimen/text_size_status"
+            app:layout_constraintBottom_toBottomOf="@+id/val_status_attend"
+            app:layout_constraintStart_toEndOf="@+id/val_status_attend" />
+
+        <TextView
+            android:id="@+id/val_status_absence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_medium"
+            android:textSize="@dimen/text_size_attendance_count"
+            app:layout_constraintStart_toEndOf="@+id/state_attend"
+            app:layout_constraintTop_toBottomOf="@+id/attendance_title" />
+
+        <TextView
+            android:id="@+id/state_absence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_small"
+            android:text="@string/status_absence_text"
+            android:textSize="@dimen/text_size_status"
+            app:layout_constraintBottom_toBottomOf="@+id/val_status_absence"
+            app:layout_constraintStart_toEndOf="@+id/val_status_absence" />
+
+        <TextView
+            android:id="@+id/val_status_late"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_medium"
+            android:textSize="@dimen/text_size_attendance_count"
+            app:layout_constraintStart_toEndOf="@+id/state_absence"
+            app:layout_constraintTop_toBottomOf="@+id/attendance_title" />
+
+        <TextView
+            android:id="@+id/state_late"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_interval_small"
+            android:text="@string/status_absence_text"
+            android:textSize="@dimen/text_size_status"
+            app:layout_constraintBottom_toBottomOf="@+id/val_status_late"
+            app:layout_constraintStart_toEndOf="@+id/val_status_late" />
+
+
+        <Button
+            android:id="@+id/class_edit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/edit_button"
+            android:text="@string/edit_text"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/val_status_attend" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

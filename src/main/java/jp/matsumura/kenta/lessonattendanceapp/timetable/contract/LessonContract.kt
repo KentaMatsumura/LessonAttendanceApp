@@ -5,7 +5,7 @@ import jp.matsumura.kenta.lessonattendanceapp.BaseContract
 
 class LessonContract {
     interface View : BaseContract.View {
-        fun showLessonFragment()
+        fun showLessonFragment(docName: String)
         fun loadLessonSuccess(list: QueryDocumentSnapshot)
     }
 

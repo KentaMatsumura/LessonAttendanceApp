@@ -1,6 +1,7 @@
 package jp.matsumura.kenta.lessonattendanceapp.timetable.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,12 +9,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import jp.matsumura.kenta.lessonattendanceapp.BaseActivity
 import jp.matsumura.kenta.lessonattendanceapp.R
+import jp.matsumura.kenta.lessonattendanceapp.data.Lesson
 import jp.matsumura.kenta.lessonattendanceapp.di.component.DaggerActivityComponent
 import jp.matsumura.kenta.lessonattendanceapp.di.module.ActivityModule
 import jp.matsumura.kenta.lessonattendanceapp.timetable.contract.LessonContract
 import kotlinx.android.synthetic.main.activity_timetable.*
 import kotlinx.android.synthetic.main.view_custom_button.view.*
 import javax.inject.Inject
+import jp.matsumura.kenta.lessonattendanceapp.lessondetails.LessonDetailsActivity
 
 
 class TimetableActivity : BaseActivity(), LessonContract.View {
@@ -41,7 +44,10 @@ class TimetableActivity : BaseActivity(), LessonContract.View {
         email_password_text.text = auth.currentUser?.email
         presenter.loadLesson()
 
-        custom_button_1_1.setOnClickListener { toastMessage(it) }
+        custom_button_1_1.setOnClickListener {
+            toastMessage(it)
+            showLessonFragment("${auth.currentUser?.email}_1_1")
+        }
         custom_button_2_1.setOnClickListener { toastMessage(it) }
         custom_button_3_1.setOnClickListener { toastMessage(it) }
         custom_button_4_1.setOnClickListener { toastMessage(it) }
@@ -65,11 +71,10 @@ class TimetableActivity : BaseActivity(), LessonContract.View {
         moveTaskToBack(true)
     }
 
-    override fun showLessonFragment() {
-//        supportFragmentManager.beginTransaction()
-//            .addToBackStack(null)
-//            .setCustomAnimations(AnimType.FADE.getAnimPair().first, AnimType.FADE.getAnimPair().second)
-//            .replace(R.id.frame, )
+    override fun showLessonFragment(docName: String) {
+        val lessonDetailsIntent = Intent(applicationContext, LessonDetailsActivity::class.java)
+        lessonDetailsIntent.putExtra(LessonDetailsActivity.DOC_KEY, docName)
+        startActivity(lessonDetailsIntent)
     }
 
     private fun injectDependency() {
@@ -95,20 +100,6 @@ class TimetableActivity : BaseActivity(), LessonContract.View {
         button.lesson_name.text = list.data["lessonName"].toString()
         button.lesson_location.text = list.data["lessonLocation"].toString()
 
-    }
-
-    enum class AnimType() {
-        SLIDE,
-        FADE;
-
-        fun getAnimPair(): Pair<Int, Int> {
-            when(this) {
-                SLIDE -> return Pair(R.anim.slide_left, R.anim.slide_right)
-                FADE -> return Pair(R.anim.fade_in, R.anim.fade_out)
-            }
-
-            return Pair(R.anim.slide_left, R.anim.slide_right)
-        }
     }
 
 }
