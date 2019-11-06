@@ -17,7 +17,6 @@ class LessonDetailsPresenter : LessonDetailsContract.Presenter {
             .document(docName)
             .get()
             .addOnSuccessListener { result ->
-                Log.d("TESTTEST", result.toString())
                 view.loadDataSuccess(result)
             }
             .addOnFailureListener { e ->

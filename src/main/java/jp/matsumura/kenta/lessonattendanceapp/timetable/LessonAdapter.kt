@@ -20,7 +20,7 @@ class LessonAdapter(private val context: Context, private val list: MutableList<
 
         holder!!.lessonName.text = post.lessonName
         holder.lessonLocation.text = post.lessonLocation
-        holder.attendanceStatus.text = post.attendanceState.size.toString()
+        holder.attendanceStatus.text = post.attendanceState!!.size.toString()
 
     }
 

@@ -2,16 +2,26 @@ package jp.matsumura.kenta.lessonattendanceapp.lessondetails.view
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
+import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.GeoPoint
 
 import jp.matsumura.kenta.lessonattendanceapp.R
+import jp.matsumura.kenta.lessonattendanceapp.data.Lesson
 import jp.matsumura.kenta.lessonattendanceapp.di.component.DaggerFragmentComponent
 import jp.matsumura.kenta.lessonattendanceapp.di.module.FragmentModule
 import jp.matsumura.kenta.lessonattendanceapp.lessondetails.contract.LessonDetailsContract
@@ -21,9 +31,6 @@ import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 /**
  * A simple [Fragment] subclass.
@@ -36,6 +43,8 @@ import kotlin.collections.ArrayList
 class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
     private var docName: String? = null
     private var listener: OnFragmentInteractionListener? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    var lesson = Lesson()
 
     @Inject
     lateinit var presenter: LessonDetailsContract.Presenter
@@ -46,6 +55,9 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
             docName = it.getString(TAG)
         }
         injectDependency()
+
+        fusedLocationClient = FusedLocationProviderClient(this.context!!)
+
     }
 
     override fun onCreateView(
@@ -81,18 +93,34 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
         listener = null
     }
 
+    @SuppressLint("ShowToast")
     override fun loadDataSuccess(list: DocumentSnapshot) {
-        class_name.text = list.data!!["lessonName"].toString()
-        class_location.text = list.data!!["lessonLocation"].toString()
-        val st = list.data!!["startTime"] as Timestamp
-        val et = list.data!!["endTime"] as Timestamp
-        start_time.text = convertTimestamp2String(st.toDate())
-        end_time.text = convertTimestamp2String(et.toDate())
-        val attendanceList = list.data!!["attendanceState"] as ArrayList<*>
-        val attendanceListArray = attendanceList.toArray() as Array
-        val_status_attend.text = countAttendanceState(attendanceListArray, 0).toString()
-        val_status_absence.text = countAttendanceState(attendanceListArray, 1).toString()
-        val_status_late.text = countAttendanceState(attendanceListArray, 2).toString()
+        lesson.lessonName = list.data!!["lessonName"].toString()
+        lesson.lessonLocation = list.data!!["lessonLocation"].toString()
+        lesson.startTime = list.data!!["startTime"] as Timestamp
+        lesson.endTime = list.data!!["endTime"] as Timestamp
+        lesson.attendanceState = list.data!!["attendanceState"] as ArrayList<*>
+        lesson.geoFrag = list.data!!["geoFlag"] as Boolean
+        lesson.coordinate = list.data!!["coordinate"] as GeoPoint
+
+        setView()
+
+        if (!lesson.geoFrag) {
+            /*
+            位置情報取得済みの時
+             */
+            class_edit_button.setOnClickListener {
+                val geoCallback = getGeoPoint()
+            }
+        }
+        else{
+            /*
+            TODO
+             位置情報を取得済みなので
+             ボタンのところを変更する
+             */
+            setButtonView()
+        }
     }
 
 
@@ -120,15 +148,6 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LessonDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String) =
             LessonDetailsFragment().apply {
@@ -149,4 +168,50 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
     private fun countAttendanceState(list: Array<*>, target: Long): Int {
         return list.count { it == target }
     }
+
+    private fun getGeoPoint() {
+        // どのような取得方法を要求
+        val locationRequest = LocationRequest().apply {
+            // 精度重視(電力大)と省電力重視(精度低)を両立するため2種類の更新間隔を指定
+            // 今回は公式のサンプル通りにする。
+            interval = 10000                                   // 最遅の更新間隔(但し正確ではない。)
+            fastestInterval = 5000                             // 最短の更新間隔
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY  // 精度重視
+        }
+
+        // コールバック
+        val locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                // 更新直後の位置が格納されているはず
+                val location = locationResult?.lastLocation ?: return
+                Log.d("GEOPOINT", "緯度:${location.latitude}, 経度:${location.longitude}")
+                // ここでDBへ登録
+                lesson.coordinate = GeoPoint(location.latitude, location.longitude)
+            }
+        }
+
+        // 位置情報を更新
+        fusedLocationClient.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            Looper.myLooper()
+        )
+    }
+
+    private fun setView() {
+        val attendanceListArray = lesson.attendanceState!!.toArray() as Array
+
+        class_name.text = lesson.lessonName
+        class_location.text = lesson.lessonLocation
+        start_time.text = convertTimestamp2String(lesson.startTime!!.toDate())
+        end_time.text = convertTimestamp2String(lesson.endTime!!.toDate())
+        val_status_attend.text = countAttendanceState(attendanceListArray, 0).toString()
+        val_status_absence.text = countAttendanceState(attendanceListArray, 1).toString()
+        val_status_late.text = countAttendanceState(attendanceListArray, 2).toString()
+    }
+
+    private fun setButtonView(){
+
+    }
+
 }
