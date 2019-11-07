@@ -3,8 +3,6 @@ package jp.matsumura.kenta.lessonattendanceapp.lessondetails.view
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Context.LOCATION_SERVICE
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -12,15 +10,14 @@ import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
-import android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -104,36 +101,33 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
 
     @SuppressLint("ShowToast")
     override fun loadDataSuccess(list: DocumentSnapshot) {
+        val db = list.data
         lesson.lessonName = list.data!!["lessonName"].toString()
         lesson.lessonLocation = list.data!!["lessonLocation"].toString()
         lesson.startTime = list.data!!["startTime"] as Timestamp
         lesson.endTime = list.data!!["endTime"] as Timestamp
         lesson.attendanceState = list.data!!["attendanceState"] as ArrayList<*>
-        lesson.geoFrag = list.data!!["geoFlag"] as Boolean
+        lesson.geoFlag = list.data!!["geoFlag"] as Boolean
         lesson.lessonId = list.data!!["lessonId"] as Long
         lesson.coordinate = list.data!!["coordinate"] as GeoPoint
 
         setView()
+        getGeoPoint()
 
-        if (!lesson.geoFrag) {
-            /*
-            位置情報取得済みの時
-             */
-            class_edit_button.setOnClickListener {
-                getGeoPoint()
-                lesson.registrationCoordinate(docName!!)
-
-            }
+        if (lesson.geoFlag!!) {
+            setButtonView()
         } else {
             /*
-            TODO
-             位置情報を取得済みなので
-             ボタンのところを変更する
+            位置情報未取得時
              */
-            setButtonView()
+            class_edit_button.setOnClickListener {
+                lesson.registrationCoordinate(docName!!)
+                Toast.makeText(context, "registered geopoint", Toast.LENGTH_SHORT).show()
+                setButtonView()
+
+            }
         }
     }
-
 
     /**
      * This interface must be implemented by activities that contain this
@@ -197,8 +191,8 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
                 val location = locationResult?.lastLocation ?: return
                 // ここでDBへ登録
                 lesson.coordinate = GeoPoint(location.latitude, location.longitude)
-                lesson.geoFrag = true
-                lesson.registrationCoordinate(docName!!)
+                lesson.geoFlag = true
+//                lesson.registrationCoordinate(docName!!)
                 Log.d("GEOPOINT", "緯度:${location.latitude}, 経度:${location.longitude}")
             }
         }
@@ -228,5 +222,6 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
         class_edit_button.text = getString(R.string.registered_text)
         class_edit_button.setBackgroundColor(R.color.registered_color)
     }
+
 
 }

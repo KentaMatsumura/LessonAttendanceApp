@@ -14,7 +14,7 @@ open class Lesson {
     var lessonId: Long? = null
     var endTime: Timestamp? = null
     var attendanceState: ArrayList<*>? = null
-    var geoFrag: Boolean =true
+    var geoFlag: Boolean? = null
     var coordinate: GeoPoint? = null
 
     fun registrationCoordinate(docName: String) {

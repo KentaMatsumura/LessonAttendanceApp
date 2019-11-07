@@ -1,10 +1,17 @@
 package jp.matsumura.kenta.lessonattendanceapp.timetable.view
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.GeoPoint
@@ -21,7 +28,8 @@ import javax.inject.Inject
 import jp.matsumura.kenta.lessonattendanceapp.lessondetails.LessonDetailsActivity
 
 
-class TimetableActivity : BaseActivity(), LessonContract.View {
+class TimetableActivity : BaseActivity(), LessonContract.View{
+
 
     private lateinit var auth: FirebaseAuth
     @Inject
@@ -85,7 +93,7 @@ class TimetableActivity : BaseActivity(), LessonContract.View {
         lessonData.startTime = list.data["startTime"] as Timestamp
         lessonData.endTime = list.data["endTime"] as Timestamp
         lessonData.attendanceState = list.data["attendanceState"] as ArrayList<*>
-        lessonData.geoFrag = list.data["geoFlag"] as Boolean
+//        lessonData.geoFlag = list.data["geoFlag"] as Boolean
         lessonData.lessonId = list.data["lessonId"] as Long
         lessonData.coordinate = list.data["coordinate"] as GeoPoint
 
@@ -283,4 +291,6 @@ class TimetableActivity : BaseActivity(), LessonContract.View {
             }
         }
     }
+
 }
+
