@@ -17,10 +17,11 @@ class LessonDetailsPresenter : LessonDetailsContract.Presenter {
             .document(docName)
             .get()
             .addOnSuccessListener { result ->
+                Log.d("LoadSuccess", "Success load data")
                 view.loadDataSuccess(result)
             }
             .addOnFailureListener { e ->
-                Log.d("TESTTEST", e.toString())
+                Log.w("LoadError", e.toString())
             }
     }
 

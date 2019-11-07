@@ -1,17 +1,26 @@
 package jp.matsumura.kenta.lessonattendanceapp.lessondetails.view
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Context.LOCATION_SERVICE
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
+import android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -101,6 +110,7 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
         lesson.endTime = list.data!!["endTime"] as Timestamp
         lesson.attendanceState = list.data!!["attendanceState"] as ArrayList<*>
         lesson.geoFrag = list.data!!["geoFlag"] as Boolean
+        lesson.lessonId = list.data!!["lessonId"] as Long
         lesson.coordinate = list.data!!["coordinate"] as GeoPoint
 
         setView()
@@ -110,10 +120,11 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
             位置情報取得済みの時
              */
             class_edit_button.setOnClickListener {
-                val geoCallback = getGeoPoint()
+                getGeoPoint()
+                lesson.registrationCoordinate(docName!!)
+
             }
-        }
-        else{
+        } else {
             /*
             TODO
              位置情報を取得済みなので
@@ -184,9 +195,11 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
             override fun onLocationResult(locationResult: LocationResult?) {
                 // 更新直後の位置が格納されているはず
                 val location = locationResult?.lastLocation ?: return
-                Log.d("GEOPOINT", "緯度:${location.latitude}, 経度:${location.longitude}")
                 // ここでDBへ登録
                 lesson.coordinate = GeoPoint(location.latitude, location.longitude)
+                lesson.geoFrag = true
+                lesson.registrationCoordinate(docName!!)
+                Log.d("GEOPOINT", "緯度:${location.latitude}, 経度:${location.longitude}")
             }
         }
 
@@ -210,8 +223,10 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
         val_status_late.text = countAttendanceState(attendanceListArray, 2).toString()
     }
 
-    private fun setButtonView(){
-
+    @SuppressLint("ResourceAsColor")
+    private fun setButtonView() {
+        class_edit_button.text = getString(R.string.registered_text)
+        class_edit_button.setBackgroundColor(R.color.registered_color)
     }
 
 }

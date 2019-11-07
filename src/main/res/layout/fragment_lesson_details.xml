@@ -166,9 +166,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/edit_button"
-            android:text="@string/edit_text"
-            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
+            android:text="@string/registration_text"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/class_details_layout"
             app:layout_constraintTop_toBottomOf="@+id/val_status_attend" />
 
 

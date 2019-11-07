@@ -24,5 +24,6 @@
     <color name="details_cell">#FFFFFF</color>
     <color name="delete_button">#C0C0C0</color>
     <color name="edit_button">#FFA500</color>
+    <color name="registered_color">#DCDCDC</color>
 
 </resources>

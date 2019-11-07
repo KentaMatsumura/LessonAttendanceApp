@@ -18,12 +18,13 @@ class LessonPresenter : LessonContract.Presenter {
         db.collection("lessons")
             .get()
             .addOnSuccessListener { result ->
+                Log.d("LoadSuccess", "Success load data")
                 for (document in result) {
                     view.loadLessonSuccess(document)
                 }
             }
             .addOnFailureListener { e ->
-                Log.w("ERROR LOG", e)
+                Log.w("LoadError", e)
             }
     }
 
