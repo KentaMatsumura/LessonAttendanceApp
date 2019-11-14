@@ -36,7 +36,7 @@
 
     <!--  ClassDetails  -->
     <string name="registration_text">位置情報の登録</string>
-    <string name="registered_text">位置情報登録済み</string>
+    <string name="registered_text">現在地の取得</string>
     <string name="save_text">保存する</string>
     <string name="delete_text">削除する</string>
     <string name="pen_description">class_content</string>

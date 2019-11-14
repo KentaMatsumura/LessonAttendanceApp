@@ -16,8 +16,25 @@ open class Lesson {
     var attendanceState: ArrayList<*>? = null
     var geoFlag: Boolean? = null
     var coordinate: GeoPoint? = null
+    var presentLocation: GeoPoint? = null
 
     fun registrationCoordinate(docName: String) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("lessons")
+            .document(docName)
+            .set(this)
+            .addOnSuccessListener {
+                Log.d(
+                    "UpdateSuccess",
+                    "DocumentSnapshot successfully written!"
+                )
+            }
+            .addOnFailureListener { e ->
+                Log.w("UpdateError", "Error writing document", e)
+            }
+    }
+
+    fun updateCoordinate(docName: String) {
         val db = FirebaseFirestore.getInstance()
         db.collection("lessons")
             .document(docName)

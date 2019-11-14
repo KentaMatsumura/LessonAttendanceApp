@@ -110,12 +110,21 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
         lesson.geoFlag = list.data!!["geoFlag"] as Boolean
         lesson.lessonId = list.data!!["lessonId"] as Long
         lesson.coordinate = list.data!!["coordinate"] as GeoPoint
+        lesson.presentLocation = list.data!!["presentLocation"] as GeoPoint
 
         setView()
         getGeoPoint()
+        updatePresentLocation(list)
 
         if (lesson.geoFlag!!) {
+            /*
+            位置情報取得済時
+            */
             setButtonView()
+            class_edit_button.setOnClickListener{
+                lesson.updateCoordinate(docName!!)
+                Toast.makeText(context, "update geopoint", Toast.LENGTH_SHORT).show()
+            }
         } else {
             /*
             位置情報未取得時
@@ -192,8 +201,6 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
                 // ここでDBへ登録
                 lesson.coordinate = GeoPoint(location.latitude, location.longitude)
                 lesson.geoFlag = true
-//                lesson.registrationCoordinate(docName!!)
-                Log.d("GEOPOINT", "緯度:${location.latitude}, 経度:${location.longitude}")
             }
         }
 
@@ -223,5 +230,49 @@ class LessonDetailsFragment : Fragment(), LessonDetailsContract.View {
         class_edit_button.setBackgroundColor(R.color.registered_color)
     }
 
+    private fun updatePresentLocation(list: DocumentSnapshot){
+        lesson.lessonName = list.data!!["lessonName"].toString()
+        lesson.lessonLocation = list.data!!["lessonLocation"].toString()
+        lesson.startTime = list.data!!["startTime"] as Timestamp
+        lesson.endTime = list.data!!["endTime"] as Timestamp
+        lesson.attendanceState = list.data!!["attendanceState"] as ArrayList<*>
+        lesson.geoFlag = list.data!!["geoFlag"] as Boolean
+        lesson.lessonId = list.data!!["lessonId"] as Long
+        lesson.coordinate = list.data!!["coordinate"] as GeoPoint
+        lesson.presentLocation = list.data!!["presentLocation"] as GeoPoint
+        getPresentGeoPoint()
+
+        Log.d("TESTTEST", "TESTTETS")
+    }
+
+    private fun getPresentGeoPoint() {
+        // どのような取得方法を要求
+        val locationRequest = LocationRequest().apply {
+            // 精度重視(電力大)と省電力重視(精度低)を両立するため2種類の更新間隔を指定
+            // 今回は公式のサンプル通りにする。
+            interval = 10000                                   // 最遅の更新間隔(但し正確ではない。)
+            fastestInterval = 5000                             // 最短の更新間隔
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY  // 精度重視
+        }
+
+        // コールバック
+        val locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                // 更新直後の位置が格納されているはず
+                val location = locationResult?.lastLocation ?: return
+                // ここでDBへ登録
+                lesson.presentLocation = GeoPoint(location.latitude, location.longitude)
+                Log.d("TESTTEST", "TESTTETS")
+
+            }
+        }
+
+        // 位置情報を更新
+        fusedLocationClient.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            Looper.myLooper()
+        )
+    }
 
 }
