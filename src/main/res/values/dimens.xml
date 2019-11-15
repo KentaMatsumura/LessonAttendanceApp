@@ -16,6 +16,7 @@
     <dimen name="text_size_status">20sp</dimen>
     <dimen name="text_size_attendance_count">50sp</dimen>
     <dimen name="text_interval_ssmall">5dp</dimen>
+    <dimen name="text_interval_smedium">10dp</dimen>
     <dimen name="text_interval_small">15dp</dimen>
     <dimen name="text_interval_medium">25dp</dimen>
     <dimen name="classdetails_default_margin">30dp</dimen>

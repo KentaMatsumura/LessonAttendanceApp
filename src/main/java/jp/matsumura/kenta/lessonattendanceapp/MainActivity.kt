@@ -1,7 +1,6 @@
 package jp.matsumura.kenta.lessonattendanceapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -9,10 +8,10 @@ import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import jp.matsumura.kenta.lessonattendanceapp.timetable.view.TimetableActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), View.OnClickListener {
-
 
     // [START declare_auth]
     private lateinit var auth: FirebaseAuth
@@ -39,6 +38,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly
         val currentUser = auth.currentUser
+        if (currentUser != null){
+            onStartTimetable(currentUser)
+        }
         updateUI(currentUser)
     }
     // [END on_start_check_user]
@@ -55,11 +57,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    updateUI(user)
-//                    val timetableIntent = Intent(applicationContext, TimetableActivity::class.java)
-//                    startActivity(timetableIntent)
-
+                    onStartTimetable(auth.currentUser)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -70,9 +68,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     updateUI(null)
 
                 }
-                // [START_EXCLUDE]
-                hideProgressDialog()
-                // [END_EXCLUDE]
             }
         // [END create_user_with_email]
     }
@@ -82,19 +77,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         if (!validateForm()) {
             return
         }
-
-        showProgressDialog()
-
         // [START sign_in_with_email]
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
-                    val user = auth.currentUser
-                    updateUI(user)
-//                    val timetableIntent = Intent(applicationContext, TimetableActivity::class.java)
-//                    startActivity(timetableIntent)
+                    onStartTimetable(auth.currentUser)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
@@ -109,7 +98,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 if (!task.isSuccessful) {
                     status.setText(R.string.auth_failed)
                 }
-                hideProgressDialog()
                 // [END_EXCLUDE]
             }
         // [END sign_in_with_email]
@@ -173,7 +161,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun updateUI(user: FirebaseUser?) {
-        hideProgressDialog()
         if (user != null) {
             status.text = getString(
                 R.string.emailpassword_status_fmt,
@@ -212,6 +199,12 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             R.id.signOutButton -> signOut()
             R.id.verifyEmailButton -> sendEmailVerification()
         }
+    }
+
+    private fun onStartTimetable(user: FirebaseUser?){
+        updateUI(user)
+        val timetableIntent = Intent(applicationContext, TimetableActivity::class.java)
+        startActivity(timetableIntent)
     }
 
     companion object {
